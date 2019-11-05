@@ -1,0 +1,35 @@
+version: '2.1'
+
+services:
+  chatroom:
+    container_name: chatroom
+    image: xlor-chatroom
+    build:
+      context: .
+      args:
+        port: 3000
+        mode: production
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+      - mongo
+    links:
+      - redis
+      - mongo
+  redis:
+    container_name: chat-redis
+    image: redis
+    expose:
+      - 6379
+  mongo:
+    container_name: chat-mongo
+    image: mongo
+    expose:
+      - 27017
+    environment:
+      - MONGO_INITDB_DATABASE=chat
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
