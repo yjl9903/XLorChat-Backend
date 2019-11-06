@@ -31,11 +31,13 @@ router.post('/create', async (req, res) => {
   const members = [user.uid, ...req.body.members];
   const group = new Group({ members });
   await group.save();
+  const arr = [];
+  for (const uid of group.members) {
+    arr.push((await User.findOne({ uid }).exec()).getInfo(false));
+  }
   res.send({
     gid: group.gid,
-    members: members.map(async (uid) => {
-      return (await User.findOne({ uid }).exec()).getInfo(false); 
-    })
+    members: arr
   });
 });
 
