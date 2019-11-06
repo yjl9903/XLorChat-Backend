@@ -32,13 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: (origin, callback) => {
-      if (origin.indexOf(appUrl) === 0) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
+    origin: appUrl
   })
 );
 
