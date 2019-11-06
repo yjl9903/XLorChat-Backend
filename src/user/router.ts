@@ -33,7 +33,9 @@ router.post('/create', async (req, res) => {
   await group.save();
   res.send({
     gid: group.gid,
-    members
+    members: members.map(async (uid) => {
+      return (await User.findOne({ uid }).exec()).getInfo(false); 
+    })
   });
 });
 
