@@ -1,3 +1,3 @@
 export const SecretKey = 'hwdtxdy';
 
-export const appUrl = 'http://localhost:8080';
+export const appUrl = process.env.APP_URL || 'http://localhost:8080';
