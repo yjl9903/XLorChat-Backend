@@ -11,6 +11,7 @@ services:
         mode: production
     environment:
       - NODE_ENV=production
+      - APP_URL=http://47.99.39.162
     ports:
       - 3000:3000
     depends_on:
