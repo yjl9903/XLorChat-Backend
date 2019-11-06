@@ -45,8 +45,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 30 * 24 * 3600 * 1000,
-      sameSite: 'lax'
+      maxAge: 30 * 24 * 3600 * 1000
     }
   })
 );
