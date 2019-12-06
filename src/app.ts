@@ -9,7 +9,11 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 
 const app = express();
-expressWs(app);
+expressWs(app, undefined, {
+  wsOptions: {
+    maxPayload: 1024 * 1024 * 20
+  }
+});
 
 mongoose.connect('mongodb://mongo:27017/chat', {
   useNewUrlParser: true,

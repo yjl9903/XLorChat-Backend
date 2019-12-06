@@ -4,6 +4,7 @@ services:
   chatroom:
     container_name: chatroom
     image: xlor-chatroom
+    restart: always
     build:
       context: .
       args:
@@ -22,11 +23,13 @@ services:
   redis:
     container_name: chat-redis
     image: redis
+    restart: always
     expose:
       - 6379
   mongo:
     container_name: chat-mongo
     image: mongo
+    restart: always
     expose:
       - 27017
     environment:
